@@ -1,11 +1,14 @@
 package com.example.book_store.Controller;
 
+import com.example.book_store.Entity.CustomerEntity;
 import com.example.book_store.Services.CustomerServices;
 import com.example.book_store.Services.domain.LoginRes;
+import com.example.book_store.Services.domain.RegisterReq;
 import com.example.book_store.Util.GenericResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +23,13 @@ public class CustomerController {
     public GenericResponse<LoginRes> login(@RequestParam String username, @RequestParam String password){
         GenericResponse<LoginRes> response = customerServices.login(username, password);
         log.info("login success");
+        return response;
+    }
+
+    @PostMapping("/register")
+    public GenericResponse<CustomerEntity> register(@RequestBody RegisterReq registerReq){
+        GenericResponse<CustomerEntity> response = customerServices.register(registerReq);
+        log.info("register success");
         return response;
     }
 }
