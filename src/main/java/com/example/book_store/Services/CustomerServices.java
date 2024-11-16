@@ -29,7 +29,7 @@ public class CustomerServices {
             if (password.equals(customerEntity.getPassword())){
                 log.info("pass");
                 String token = jwtUtil.generateToken(username, customerEntity.getRole());
-                LoginRes loginRes = new LoginRes(customerEntity.getRole(), token);
+                LoginRes loginRes = new LoginRes(customerEntity.getCustomerId(), customerEntity.getUsername(), customerEntity.getRole(), token);
                 return new GenericResponse<>(HttpStatus.OK, "Login successful", loginRes);
             }else {
                 log.info("failed");

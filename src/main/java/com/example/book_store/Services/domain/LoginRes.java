@@ -8,6 +8,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class LoginRes {
+    private String customerId;
+    private String username;
     private String role;
     private String token;
 }
