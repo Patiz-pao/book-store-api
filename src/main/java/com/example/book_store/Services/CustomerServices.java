@@ -1,19 +1,16 @@
 package com.example.book_store.Services;
 
-import com.example.book_store.Entity.BooksEntity;
 import com.example.book_store.Entity.CustomerEntity;
 import com.example.book_store.Repository.CustomerRepo;
-import com.example.book_store.Services.domain.BooksReq;
+import com.example.book_store.Services.domain.LoginRes;
 import com.example.book_store.Util.GenericResponse;
+import com.example.book_store.Util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.UUID;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -22,15 +19,18 @@ import java.util.UUID;
 public class CustomerServices {
 
     private final CustomerRepo customerRepo;
+    private final JwtUtil jwtUtil;
 
-    public GenericResponse<CustomerEntity> login(String username, String password) {
+    public GenericResponse<LoginRes> login(String username, String password) {
 
         CustomerEntity customerEntity = customerRepo.findByUsername(username);
 
         if (customerEntity != null){
             if (password.equals(customerEntity.getPassword())){
                 log.info("pass");
-                return new GenericResponse<>(HttpStatus.OK, "Login successful", customerEntity);
+                String token = jwtUtil.generateToken(username, customerEntity.getRole());
+                LoginRes loginRes = new LoginRes(customerEntity.getRole(), token);
+                return new GenericResponse<>(HttpStatus.OK, "Login successful", loginRes);
             }else {
                 log.info("failed");
                 throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid password");
