@@ -36,4 +36,7 @@ public class BooksEntity {
 
     @Column(name = "types")
     private String types;
+
+    @Column(name = "imageurl")
+    private String imageUrl;
 }

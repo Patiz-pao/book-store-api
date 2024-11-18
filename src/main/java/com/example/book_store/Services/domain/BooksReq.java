@@ -17,4 +17,5 @@ public class BooksReq {
     private int stock;
     private String category;
     private String types;
+    private String imageUrl;
 }
