@@ -40,4 +40,20 @@ public class DocumentServices {
         return new GenericResponse<>(HttpStatus.OK, "Get Books successfully", books);
     }
 
+    public GenericResponse<List<BooksEntity>> getBooksByCriteria(String title, String description, Double price, String category, String types) {
+        if ((title == null || title.isEmpty()) &&
+                (description == null || description.isEmpty()) &&
+                (price == null || price.isNaN()) &&
+                (category == null || category.isEmpty()) &&
+                (types == null || types.isEmpty())) {
+
+            List<BooksEntity> books = booksRepo.findAll();
+
+            return new GenericResponse<>(HttpStatus.OK, "Get Books All successfully", books);
+        }
+        List<BooksEntity> books = booksRepo.getBooksByCriteria(title, description, price, category, types);
+
+        return new GenericResponse<>(HttpStatus.OK, "Get Books successfully", books);
+    }
+
 }

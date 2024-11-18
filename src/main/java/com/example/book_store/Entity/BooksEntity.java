@@ -30,4 +30,10 @@ public class BooksEntity {
 
     @Column(name = "stock")
     private int stock;
+
+    @Column(name = "category")
+    private String category;
+
+    @Column(name = "types")
+    private String types;
 }
