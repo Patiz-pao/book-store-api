@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -39,4 +40,19 @@ public class BooksEntity {
 
     @Column(name = "imageurl")
     private String imageUrl;
+
+    @Column(name = "height_thickness")
+    private String height_thickness;
+
+    @Column(name = "pages")
+    private String pages;
+
+    @Column(name = "language")
+    private String language;
+
+    @Column(name = "size")
+    private String size;
+
+    @Column(name = "date")
+    private LocalDate date;
 }

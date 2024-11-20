@@ -40,6 +40,20 @@ public class DocumentServices {
         return new GenericResponse<>(HttpStatus.OK, "Get Books successfully", books);
     }
 
+    public GenericResponse<BooksEntity> getBooksById(String bookId) {
+        // Fetch book entity by ID
+        BooksEntity booksEntity = booksRepo.findByBookId(bookId);
+
+        if (booksEntity == null) {
+            // Handle case when book is not found
+            return new GenericResponse<>(HttpStatus.NOT_FOUND, "Book not found", null);
+        }
+
+        // Return the response if book is found
+        return new GenericResponse<>(HttpStatus.OK, "Get Books successfully", booksEntity);
+    }
+
+
     public GenericResponse<List<BooksEntity>> getBooksByCriteria(String title, String description, Double price, String category, String types) {
         if ((title == null || title.isEmpty()) &&
                 (description == null || description.isEmpty()) &&

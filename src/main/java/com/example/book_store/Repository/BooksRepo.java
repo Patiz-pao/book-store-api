@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.awt.print.Book;
 import java.util.List;
 
 public interface BooksRepo extends JpaRepository<BooksEntity, String> {
@@ -21,5 +22,7 @@ public interface BooksRepo extends JpaRepository<BooksEntity, String> {
                                 @Param("price") Double price,
                                 @Param("category") String category,
                                 @Param("types") String types);
+
+    BooksEntity findByBookId(@Param("bookId") String bookId);
 
 }

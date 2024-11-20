@@ -33,6 +33,14 @@ public class DocumentController {
         return response;
     }
 
+    @GetMapping("/booksId")
+    public GenericResponse<BooksEntity> getBooksById(@RequestParam String bookId){
+        GenericResponse<BooksEntity> response = documentServices.getBooksById(bookId);
+        log.info("get books id success");
+
+        return response;
+    }
+
     @GetMapping("/books/search")
     public GenericResponse<List<BooksEntity>> getBooksByCriteria(@RequestParam (required = false) String title,
                                                                  @RequestParam (required = false) String description,

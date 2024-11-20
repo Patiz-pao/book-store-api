@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -18,4 +19,9 @@ public class BooksReq {
     private String category;
     private String types;
     private String imageUrl;
+    private String height_thickness;
+    private String pages;
+    private String language;
+    private String size;
+    private LocalDate date;
 }
