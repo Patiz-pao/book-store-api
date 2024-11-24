@@ -25,6 +25,14 @@ public class DocumentController {
         return response;
     }
 
+    @PutMapping("/books")
+    public GenericResponse<BooksEntity> updateBooks(@RequestBody BooksReq req, @RequestParam String bookId){
+        GenericResponse<BooksEntity> response = documentServices.updateProduct(req, bookId);
+        log.info("update books success");
+
+        return response;
+    }
+
     @GetMapping("/books")
     public GenericResponse<List<BooksEntity>> getBooks(){
         GenericResponse<List<BooksEntity>> response = documentServices.getBooks();
@@ -48,7 +56,7 @@ public class DocumentController {
                                                                  @RequestParam (required = false) String category,
                                                                  @RequestParam (required = false) String types){
         GenericResponse<List<BooksEntity>> response = documentServices.getBooksByCriteria(title, description, price, category, types);
-        log.info("get books success");
+        log.info("get books by criteria success");
 
         return response;
     }
