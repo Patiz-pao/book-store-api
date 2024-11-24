@@ -18,7 +18,7 @@ public class ApiScheduler {
 
     @Scheduled(fixedRate = 45000)
     public void callPingApi() {
-        String url = "http://localhost:8080/ping";
+        String url = "https://book-store-api-4mpr.onrender.com/ping";
 
         try {
             ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
