@@ -74,6 +74,18 @@ public class DocumentServices {
         return new GenericResponse<>(HttpStatus.OK, "Get Books successfully", booksEntity);
     }
 
+    public GenericResponse<BooksEntity> delBooks(String bookId) {
+        BooksEntity booksEntity = booksRepo.findByBookId(bookId);
+
+        if (booksEntity == null) {
+            return new GenericResponse<>(HttpStatus.NOT_FOUND, "Book not found", null);
+        }
+
+        booksRepo.delete(booksEntity);
+        
+        return new GenericResponse<>(HttpStatus.OK, "Delete Books successfully", booksEntity);
+    }
+
 
     public GenericResponse<List<BooksEntity>> getBooksByCriteria(String title, String description, Double price, String category, String types) {
         if ((title == null || title.isEmpty()) &&
