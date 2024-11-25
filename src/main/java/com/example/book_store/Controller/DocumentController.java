@@ -49,6 +49,14 @@ public class DocumentController {
         return response;
     }
 
+    @DeleteMapping("/books")
+    public GenericResponse<BooksEntity> delBooks(@RequestParam String bookId){
+        GenericResponse<BooksEntity> response = documentServices.delBooks(bookId);
+        log.info("Del books success");
+
+        return response;
+    }
+
     @GetMapping("/books/search")
     public GenericResponse<List<BooksEntity>> getBooksByCriteria(@RequestParam (required = false) String title,
                                                                  @RequestParam (required = false) String description,
